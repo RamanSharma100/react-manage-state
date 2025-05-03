@@ -1,4 +1,4 @@
-import { Middleware, MiddlewareAPI } from './types';
+import { Middleware, MiddlewareAPI } from '../types';
 
 export const applyMiddleware = <S>(
   middlewares: Middleware[],
