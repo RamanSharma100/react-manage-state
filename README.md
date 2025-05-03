@@ -6,6 +6,7 @@ React Manage State is a lightweight and customizable state management library in
 
 - **Custom Store**: Easily create and manage your store with `createStore`.
 - **State Slices**: Modularize your state using `createSlice`.
+- **Combine Reducers**: Merge multiple reducers into a single reducer using `combineReducers`.
 - **Middleware Support**: Extend functionality with custom middleware.
 - **Thunk Middleware**: Built-in support for asynchronous actions (Work in Progress).
 - **DevTools Integration**: Debug state changes with Redux DevTools.
@@ -88,9 +89,13 @@ export default App;
 
 Creates a store with reducers, middleware, and optional DevTools integration.
 
-### `createSlice`
+### `combineReducers`
 
 Defines a slice of state with reducers and actions.
+
+### `createSlice`
+
+Merge multiple reducers into a single reducer.
 
 ### `useSelector`
 

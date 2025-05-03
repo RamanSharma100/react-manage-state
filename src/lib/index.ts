@@ -20,5 +20,6 @@ export { default as useDispatch } from './hooks/useDispatch';
 
 export { thunk } from './middlewares/thunk';
 export { enableDevtools } from './devtools/devtools';
-export { applyMiddleware } from './middlewares/applymiddlewares';
 export { shallowEqual } from './functions/shallowEqual';
+export { combineReducers } from './functions/combineReducers';
+export { applyMiddleware } from './middlewares/applymiddlewares';
