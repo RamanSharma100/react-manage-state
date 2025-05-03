@@ -40,7 +40,7 @@ export const createStore = <S>(options: {
   );
 
   if (options.devTools && window.__REDUX_DEVTOOLS_EXTENSION__) {
-    enableDevtools(getState, dispatch);
+    dispatch = enableDevtools(getState, dispatch);
   }
 
   return {

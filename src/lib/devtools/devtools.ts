@@ -12,8 +12,6 @@ export const enableDevtools = <S>(
     const originalDispatch = dispatch;
     dispatch = (action) => {
       const result = originalDispatch(action);
-      console.log('Dispatching Action:', action);
-      console.log('State after Action:', getState());
       extension.send(action, getState());
       return result;
     };
@@ -23,5 +21,9 @@ export const enableDevtools = <S>(
         dispatch(message.payload);
       }
     });
+
+    return dispatch;
   }
+
+  return dispatch;
 };

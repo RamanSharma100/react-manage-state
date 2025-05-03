@@ -20,11 +20,6 @@ export const counterSlice = createSlice<CounterState>({
     incrementByAmount: (state: CounterState, action: Action) => {
       state.value += action.payload;
     },
-    increment2: async (state: CounterState) => (dispatch: any) => {
-      setTimeout(() => {
-        state.value += 1;
-      }, 5000);
-    },
   },
 });
 
