@@ -1,3 +1,4 @@
+import { Draft } from 'immer';
 import type { Action, CreateSliceProps } from '../types';
 import { createAction } from './createAction';
 import { createReducer } from './createReducer';
@@ -16,7 +17,7 @@ export const createSlice = <S>({
   };
 
   const actionCreators: Record<string, (payload?: any) => Action<S>> = {};
-  const cases: Record<string, (state: S, action: Action<S>) => S> = {};
+  const cases: Record<string, (state: Draft<S>, action: Action<S>) => S> = {};
 
   Object.keys(slice.reducers).forEach((key) => {
     const type = `${name}/${key}`;

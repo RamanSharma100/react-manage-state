@@ -12,8 +12,16 @@ export const enableDevtools = <S>(
     const originalDispatch = dispatch;
     dispatch = (action) => {
       const result = originalDispatch(action);
+      console.log('Dispatching Action:', action);
+      console.log('State after Action:', getState());
       extension.send(action, getState());
       return result;
     };
+
+    extension.subscribe((message: any) => {
+      if (message.type === 'DISPATCH' && message.payload.type === 'ACTION') {
+        dispatch(message.payload);
+      }
+    });
   }
 };

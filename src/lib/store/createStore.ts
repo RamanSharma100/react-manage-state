@@ -10,13 +10,13 @@ export const createStore = <S>(options: {
   devTools?: boolean;
 }) => {
   let state: S = options.initialState as S;
-  const listeners: Array<Function> = [];
+  const listeners: Array<() => void> = [];
 
   state = options.reducers(state, { type: '@@redux/INIT' });
 
   const getState = () => state;
 
-  let dispatch: (action: any) => any = (_action) => {
+  let dispatch: (action: any) => any = () => {
     throw new Error(
       'Dispatching while constructing your middleware is not allowed. Other middleware would not be applied to this dispatch.'
     );
@@ -39,18 +39,19 @@ export const createStore = <S>(options: {
     baseDispatch
   );
 
-  if (options.devTools) {
-    if (window.__REDUX_DEVTOOLS_EXTENSION__) {
-      enableDevtools(store.getState, dispatch);
-    }
+  if (options.devTools && window.__REDUX_DEVTOOLS_EXTENSION__) {
+    enableDevtools(getState, dispatch);
   }
 
   return {
-    getState: () => state,
+    getState,
     dispatch,
-    subscribe: (listener: Function) => {
+    subscribe: (listener: () => void) => {
       listeners.push(listener);
-      return () => listeners.filter((l) => l !== listener);
+      return () => {
+        const index = listeners.indexOf(listener);
+        if (index > -1) listeners.splice(index, 1);
+      };
     },
     replaceReducer: (newReducer: Reducer<S>) => {
       options.reducers = newReducer;

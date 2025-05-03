@@ -12,12 +12,18 @@ export const counterSlice = createSlice<CounterState>({
   reducers: {
     increment: (state: CounterState) => {
       state.value += 1;
+      return state;
     },
     decrement: (state: CounterState) => {
       state.value -= 1;
     },
     incrementByAmount: (state: CounterState, action: Action) => {
       state.value += action.payload;
+    },
+    increment2: async (state: CounterState) => (dispatch: any) => {
+      setTimeout(() => {
+        state.value += 1;
+      }, 5000);
     },
   },
 });

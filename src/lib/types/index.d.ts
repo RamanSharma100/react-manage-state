@@ -17,7 +17,7 @@ export type Action<T = any> = {
 };
 
 export type Reducer<S = any, A extends Action = Action> = (
-  state: S | undefined,
+  state: Draft<S> | undefined,
   action: A
 ) => S;
 
